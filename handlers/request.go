@@ -12,7 +12,7 @@ type CreateOpeningRequest struct {
 }
 
 func ErrorMissingField(name, typ string) error {
-	return fmt.Errorf("Missing field %s of type %s", name, typ)
+	return fmt.Errorf("missing field %s of type %s", name, typ)
 }
 
 func (r *CreateOpeningRequest) Validate() error {
@@ -35,4 +35,20 @@ func (r *CreateOpeningRequest) Validate() error {
 		return ErrorMissingField("salary", "int64")
 	}
 	return nil
+}
+
+type UpdateOpeningRequest struct {
+	Role     string `json:"role"`
+	Company  string `json:"company"`
+	Location string `json:"location"`
+	Remote   *bool  `json:"remote"`
+	Link     string `json:"link"`
+	Salary   int64  `json:"salary"`
+}
+
+func (r *UpdateOpeningRequest) Validate() error {
+    if r.Company == "" && r.Role == "" && r.Location == "" && r.Link == "" && r.Salary == 0 && r.Remote == nil {
+        return fmt.Errorf("missing fields to update")
+    }
+    return nil
 }
