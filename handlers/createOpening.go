@@ -7,6 +7,16 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @Summary Create Opening
+// @Description Create a new opening
+// @Tags openings
+// @Accept json
+// @Produce json
+// @Param opening body CreateOpeningRequest true "Opening"
+// @Success 201 {object} schemas.OpeningResponse
+// @Failure 400 {string} string "Bad Request"
+// @Failure 500 {string} string "Internal Server Error"
+// @Router /openings [post]
 func CreateOpeningHandler(c *gin.Context) {
 	request := CreateOpeningRequest{}
 	c.BindJSON(&request)
@@ -30,5 +40,5 @@ func CreateOpeningHandler(c *gin.Context) {
 		sendError(c, http.StatusInternalServerError, err.Error())
 		return
 	}
-	c.JSON(http.StatusCreated, request)
+	c.JSON(http.StatusCreated, opening)
 }

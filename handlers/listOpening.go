@@ -7,7 +7,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-
+// @Summary List Openings
+// @Description List all openings
+// @Tags openings
+// @Accept json
+// @Produce json
+// @Success 200 {array} schemas.OpeningResponse
+// @Router /openings [get]
 func ListOpeningHandler(ctx *gin.Context) {
 	openings := []schemas.Opening{}
 
