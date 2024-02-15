@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func CreateOpening(c *gin.Context) {
+func CreateOpeningHandler(c *gin.Context) {
 	request := CreateOpeningRequest{}
 	c.BindJSON(&request)
 	request.Validate()
